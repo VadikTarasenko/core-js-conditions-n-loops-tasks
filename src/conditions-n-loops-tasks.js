@@ -21,8 +21,9 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) return true;
+  return false;
 }
 
 /**
@@ -38,8 +39,10 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) return a;
+  if (b > a && b > c) return b;
+  return c;
 }
 
 /**
@@ -119,8 +122,61 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  function getNumberToString(number) {
+    let getString = '';
+    switch (number) {
+      case '0':
+        getString = 'zero';
+        break;
+      case '1':
+        getString = 'one';
+        break;
+      case '2':
+        getString = 'two';
+        break;
+      case '3':
+        getString = 'three';
+        break;
+      case '4':
+        getString = 'four';
+        break;
+      case '5':
+        getString = 'five';
+        break;
+      case '6':
+        getString = 'six';
+        break;
+      case '7':
+        getString = 'seven';
+        break;
+      case '8':
+        getString = 'eight';
+        break;
+      case '9':
+        getString = 'nine';
+        break;
+      case '.':
+      case ',':
+        getString = 'point';
+        break;
+      case '-':
+        getString = 'minus';
+        break;
+
+      default:
+    }
+    return getString;
+  }
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (i === numberStr.length - 1) {
+      result += `${getNumberToString(numberStr[i])}`;
+    } else {
+      result += `${getNumberToString(numberStr[i])} `;
+    }
+  }
+  return result;
 }
 
 /**
@@ -135,9 +191,21 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== str[str.length - (i + 1)]) {
+      return false;
+    }
+  }
+  return true;
 }
+// function isPalindrome(str) {
+//   let newStr = '';
+//   for (let i = str.length - 1; i >= 0; i -= 1) {
+//     newStr += str[i];
+//   }
+//   return str === newStr;
+// }
 
 /**
  * Finds the first occurrence of a letter in a string.
@@ -153,8 +221,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -172,8 +245,14 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const strNum = String(num);
+  for (let i = 0; i < strNum.length; i += 1) {
+    if (+strNum[i] === digit) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
